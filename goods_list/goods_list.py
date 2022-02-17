@@ -1,8 +1,11 @@
+import imp
 import json
 import requests
 import time
 import ctypes
 import os
+from cookies import cookie
+from main import main as config
 ctypes.windll.kernel32.SetConsoleTitleW('米游社商品清单')
 
 def clear():
@@ -134,6 +137,7 @@ def main():
                 good_info = get_good_info(goods_name_list[good_index])
                 clear()
                 print_info(good_info)
+                return good_info['goods_id']
             except:
                 print('请输入一个正确的数字！')
                 print_goods_list()
@@ -159,11 +163,16 @@ def main():
         print('兑换持续时间：\t从 {} 起开始，至 {} 结束...'.format(time.ctime(start),time.ctime(end)))
 
     print_goods_list()
-    choose_good()
+    good_id = choose_good()
+    return good_id
 
-    
+def run():
+    good_id = main()
+    print('开始生成配置文件...')
+    config(good_id=good_id,cookie=cookie)
+
 try:
-    main()
+    run()
     time.sleep(5)
     print()
     input("按 Enter 关闭...")
