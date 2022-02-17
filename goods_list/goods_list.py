@@ -65,8 +65,8 @@ def main():
     print('===================\n')
     for good_type in goods_type:
         print(f"{goods_type.index(good_type)} --  {goods_dict[good_type]}")
-    index = int(input("\n输入数字选择分区："))
     try:
+        index = int(input("\n输入数字选择分区："))
         goods_list = get_key_info(get_list(goods_type[index]))
     except:
         print('请输入一个正确的数字！')
@@ -88,17 +88,18 @@ def main():
             print(f'{goods_name_list.index(GoodName)} --  {GoodName}')
 
     def choose_good():
-
         print('\n-1 -- 返回上级')
         print('-2 -- 使用关键词搜索商品')
 
-        def input_index():
+        def input_index()->int:
             try:
                 good_index = int(input("\n请输入数字选择："))
-                return good_index
+                if type(good_index) == int :
+                    return good_index
             except:
                 print('请输入一个正确的数字！')
-                input_index()
+                good_index = input_index()
+                return good_index
 
         good_index = input_index()
         if good_index == -1:
