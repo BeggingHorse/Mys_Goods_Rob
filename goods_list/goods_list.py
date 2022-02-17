@@ -2,7 +2,12 @@ import json
 import requests
 import time
 import ctypes
+import os
 ctypes.windll.kernel32.SetConsoleTitleW('米游社商品清单')
+
+def clear():
+    os.system('cls')
+
 def get_list(key:str)-> list:
     url='https://api-takumi.mihoyo.com/mall/v1/web/goods/list'
     headlers={
@@ -59,6 +64,7 @@ def search(goods_name_list):
     return key_word_list
 
 def main():
+    clear()
     goods_type=('bh3','hk4e','bh2','nxx','bbs','')
     goods_dict={'':'全部商品','bh3':'崩坏三','hk4e':'原神','bh2':'崩坏二','nxx':'未定事件簿','bbs':'米游社'}
     print('选择商品分区！\n')
@@ -69,6 +75,7 @@ def main():
         index = int(input("\n输入数字选择分区："))
         goods_list = get_key_info(get_list(goods_type[index]))
     except:
+        clear()
         print('请输入一个正确的数字！')
         main()
     goods_name_list = []
@@ -81,22 +88,29 @@ def main():
             if good['goods_name'] == GoodName:
                 return good
 
-    def print_goods_list():
+    def print_goods_list(num = 1):
+        if num == 0:
+            print('\n-1 -- 返回上级')
+            print('-2 -- 使用关键词搜索商品')
+            return
+        clear()
         print('\n发现以下商品...\n')
         print('===================\n')
         for GoodName in goods_name_list:
             print(f'{goods_name_list.index(GoodName)} --  {GoodName}')
-
-    def choose_good():
         print('\n-1 -- 返回上级')
         print('-2 -- 使用关键词搜索商品')
+    
+    def choose_good(num = 1):
 
         def input_index()->int:
             try:
+                print_goods_list(num)
                 good_index = int(input("\n请输入数字选择："))
                 if type(good_index) == int :
                     return good_index
             except:
+                clear()
                 print('请输入一个正确的数字！')
                 good_index = input_index()
                 return good_index
@@ -108,15 +122,17 @@ def main():
 
         elif good_index == -2:
             key_word_list = search(goods_name_list)
+            clear()
             print("\n以下是查询结果...")
             print('===================\n')
             for GoodName in key_word_list:
                 print(f'{goods_name_list.index(GoodName)} --  {GoodName}')
-            choose_good()
+            choose_good(0)
         else:
             try:
                 print('\n你选择了 '+goods_name_list[good_index])
                 good_info = get_good_info(goods_name_list[good_index])
+                clear()
                 print_info(good_info)
             except:
                 print('请输入一个正确的数字！')
@@ -144,7 +160,14 @@ def main():
 
     print_goods_list()
     choose_good()
-main()
-time.sleep(5)
-print()
-input("按 Enter 关闭...")
+
+    
+try:
+    main()
+    time.sleep(5)
+    print()
+    input("按 Enter 关闭...")
+except:
+    time.sleep(5)
+    print()
+    input("按 Enter 关闭...")
