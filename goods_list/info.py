@@ -33,7 +33,8 @@ class Info:
         'goods_detail','cover','rules','price','start','end',
         'bbs_detail','sale_start_time']
         for del_element in del_elements:
-            del info[del_element]
+            try:del info[del_element]
+            except:pass
         return info
 
     def player(self,cookie,game_biz):
@@ -42,8 +43,12 @@ class Info:
             'cookie' : cookie
         }
         r = requests.get(url=url,headers=headers)
-        accounts = json.loads(r.text)['data']['list']
-        return accounts
+        uid = r.cookies.values()[1]
+        try:
+            accounts = json.loads(r.text)['data']['list']
+            return accounts
+        except:
+            return uid
 
     def addr(self,cookie):
         url = 'https://api-takumi.mihoyo.com/account/address/list'
@@ -62,7 +67,10 @@ class Info:
     def go(self,good_id,cookie):
         self.good_info = self.good(good_id=good_id)
         self.game_biz = self.good_info['game_biz']
-        self.accounts = self.player(cookie=cookie,game_biz=self.game_biz)
+        try:
+            self.accounts = self.player(cookie=cookie,game_biz=self.game_biz)
+        except:
+            pass
         return self.good_info , self.accounts
 
 info = Info()

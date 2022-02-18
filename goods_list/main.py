@@ -1,5 +1,4 @@
 from info import info
-from cookies import cookie
 import os
 import json
 def clear():
@@ -26,8 +25,10 @@ def main(good_id,cookie):
         for account in accounts:
             print(f'\n-------{accounts.index(account)}-------')
             for key in info_sequence:
-                msg = f'{info_dict[key]}：{account[key]}'
-                print(msg)
+                try:
+                    msg = f'{info_dict[key]}：{account[key]}'
+                    print(msg)
+                except: return accounts
         account_index = input_index(accounts)
         account = accounts[account_index]
         return account
@@ -63,9 +64,14 @@ def main(good_id,cookie):
             json.dump(config,f,indent=2)
 
     good_info ,accounts = info.go(good_id=good_id,cookie=cookie)
-    account = choose_account(accounts=accounts)
-    uid = account['game_uid']
-    region = account['region']
-    game_biz = account['game_biz']
+    game_biz = good_info['game_biz']
     addr = choose_addr(cookie=cookie)
+    region = ''
+    try:
+        account = choose_account(accounts=accounts)
+        uid = account['game_uid']
+        region = account['region']
+    except:
+        uid = account
+        pass
     write_config(cookie=cookie,goods_id=good_id,uid=uid,region=region,game_biz=game_biz,address_id=addr)

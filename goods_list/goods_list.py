@@ -4,7 +4,8 @@ import requests
 import time
 import ctypes
 import os
-from cookies import cookie
+with open("cookie.json","r") as f:
+    cookie = json.load(f)
 from main import main as config
 ctypes.windll.kernel32.SetConsoleTitleW('米游社商品清单')
 
@@ -130,7 +131,8 @@ def main():
             print('===================\n')
             for GoodName in key_word_list:
                 print(f'{goods_name_list.index(GoodName)} --  {GoodName}')
-            choose_good(0)
+            good_index = choose_good(0)
+            return good_index
         else:
             try:
                 print('\n你选择了 '+goods_name_list[good_index])
