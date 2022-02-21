@@ -1,4 +1,3 @@
-from tracemalloc import start
 import requests as r
 import json
 import time
