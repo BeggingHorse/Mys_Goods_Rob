@@ -4,8 +4,7 @@
 * [点击下载最新代码包](https://github.com/TuanKay10/Mys_Rob_Goods/releases/download/Mys_Goods_List_v2/Mys_Rob_goods.zip)  
 * 修改部分环境名称，支持使用`config.json`进行配置
   * [查看环境变量](#所需环境变量)
-* `config.json`
-    🡻🡻
+* `config.json`⤵
 ```
 {
   "cookie": "xxx",
