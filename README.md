@@ -1,6 +1,6 @@
 # Mys_Rob_Goods 米游社商店兑换工具（云函数）  
 ## 2022/02/21更新  
-* 可以使用[good_list](https://github.com/TuanKay10/Mys_Rob_Goods/releases/download/Mys_Goods_List_v2/good_list.zip)查看商品信息，并生成`config.json`  
+* 可以使用[good_list](https://github.com/TuanKay10/Mys_Rob_Goods/releases/download/Mys_Goods_List_v2/good_list.zip)查看商品信息，在`cookie.json`中写入米游社Cookie可以生成`config.json`，将`config.json`上传至云函数的`./config`位置，便可以直接使用    
 * [点击下载最新代码包](https://github.com/TuanKay10/Mys_Rob_Goods/releases/download/Mys_Goods_List_v2/Mys_Rob_goods.zip)  
 * 修改部分环境名称，支持使用`config.json`进行配置
   * [查看环境变量](#所需环境变量)
