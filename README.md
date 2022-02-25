@@ -48,8 +48,16 @@
 ![ND629N1_Q5OW)LTBNJOD9IN](https://user-images.githubusercontent.com/91844313/139438642-0404c494-dcc6-41a0-b6a7-c3e03b98ec44.png)  
 [参考环境变量](#所需环境变量)
 ## Cookies获取  
+### 方法一
 * [登录](https://user.mihoyo.com/#/login/password)前按下`F12`在右边的窗口里找到`Cookie`  
 ![image](https://user-images.githubusercontent.com/91844313/139436614-8920e006-d68d-43f9-b214-3e745687d742.png)
+
+### 方法二
+* 在地址输入栏或`F12`的控制台输入以下代码，回车即可获取Cookie
+```
+javascript:(function(){let domain=document.domain;let cookie=document.cookie;prompt('Cookies: '+domain, cookie)})();
+```
+
 ## 所需环境变量  
 |  变量名  |  key  |  value  |  默认  |  value	获取方式  |
 |  ----  | ----  | ----  | ----  | ----  |
