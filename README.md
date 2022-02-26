@@ -57,6 +57,7 @@
 ```
 javascript:(function(){let domain=document.domain;let cookie=document.cookie;prompt('Cookies: '+domain, cookie)})();
 ```
+![GetCookie3](https://user-images.githubusercontent.com/91844313/155842031-44e56fed-0b8c-45e4-8cdb-7abf74da4076.png)
 
 ## 所需环境变量  
 |  变量名  |  key  |  value  |  默认  |  value	获取方式  |
